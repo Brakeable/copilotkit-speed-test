@@ -1,0 +1,22 @@
+app copilotkitSpeedTest {
+  wasp: {
+    version: "^0.13.2"
+  },
+  title: "copilotkit-speed-test"
+}
+
+route RootRoute { path: "/", to: MainPage }
+page MainPage {
+  component: import { MainPage } from "@src/MainPage"
+}
+
+apiNamespace api {
+  middlewareConfigFn: import { corsMiddlewareFn } from "@src/server/server-setup.js",
+  path: "/api"
+}
+
+api CopilotKit {
+  fn: import { copilotKit } from "@src/server/ai/copilot-kit.js",
+  httpRoute: (POST, "/api/copilot-kit"),
+  entities: []
+}
