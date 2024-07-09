@@ -1,3 +1,5 @@
+/* 
+// new version
 import {
   CopilotRuntime,
   OpenAIAdapter,
@@ -13,4 +15,17 @@ export const copilotKit: CopilotKit = async (req, res, context) => {
   });
 
   return handleRequest(req, res, context);
+};
+*/
+
+// old version
+import { CopilotRuntime, OpenAIAdapter } from "@copilotkit/backend";
+
+export const copilotKit = function handler(req: any, res: any) {
+  const copilotKit = new CopilotRuntime({});
+  copilotKit.streamHttpServerResponse(
+    req,
+    res,
+    new OpenAIAdapter({ model: "gpt-4o" })
+  );
 };
